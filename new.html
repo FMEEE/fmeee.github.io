@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="https://skins.mcstats.com/face/1364f81ac946413a9951217867b2f29a">
+    <style type="text/css">
+        body {
+            background-image: url('https://t3.ftcdn.net/jpg/03/91/46/10/240_F_391461057_5P0BOWl4lY442Zoo9rzEeJU0S2c1WDZR.jpg');
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        .lines {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: gather 2s infinite linear;
+        }
+        
+        @keyframes gather {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(calc(var(--cursorX) * 1px), calc(var(--cursorY) * 1px));
+            }
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin-top: 20px;
+            color: green;
+        }
+        
+        p {
+            color: #666666;
+            font-size: 18px;
+            line-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: Arial, sans-serif;">Hello World - My name is FMEEE (FMEEEtv,vipfmeee)</h1>
+    
+    <p style="color: #666666; font-size: 18px; line-height: 1.5em;">Copyright &copy; U can have it but this website is shit so why tf u want to have it</p>
+    
+    <div class="lines"></div>
+    
+    <script>
+        const lines = document.querySelector('.lines');
+        document.addEventListener('mousemove', (e) => {
+            lines.style.setProperty('--cursorX', e.clientX - window.innerWidth / 2 + 'px');
+            lines.style.setProperty('--cursorY', e.clientY - window.innerHeight / 2 + 'px');
+        });
+    </script>
+</body>
+</html>
