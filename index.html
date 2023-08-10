@@ -1,34 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Add some CSS styles for a better look -->
+    <link rel="icon" type="image/png" href="https://skins.mcstats.com/face/1364f81ac946413a9951217867b2f29a">
     <style type="text/css">
         body {
-            background-image: url('https://wordpress.org/files/2022/08/Editor.webp'); 
-            background-size: cover; 
+            background-image: url('https://wordpress.org/files/2022/08/Editor.webp');
+            background-size: cover;
             color: white;
             font-family: Arial, sans-serif;
         }
         
         h1 {
             text-align: center;
-            font-size: 48px; 
-            margin-top: 20px; 
-            color: green; 
+            font-size: 48px;
+            margin-top: 20px;
+            color: green;
+            animation: moveTitle 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes moveTitle {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
         }
         
         p {
-            color: #66666; 
-            font-size: 18px; 
-            line-height: 1.5em; 
+            color: #666666;
+            font-size: 18px;
+            line-height: 1.5em;
         }
     </style>
 </head>
 <body>
     <h1 style="font-family: Arial, sans-serif;">Hello World - My name is FMEEE (FMEEEtv,vipfmeee)</h1>
     
-    <p style="color: #66666; font-size: 18px; line-height: 1.5em;">Copyright &copy; U can have it but this website is shit so why tf u want to have it</p>
+    <p style="color: #666666; font-size: 18px; line-height: 1.5em;">Copyright &copy; U can have it but this website is shit so why tf u want to have it</p>
 </body>
 </html>
