@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Snake Game</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        
+        .snake {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+        }
+        
+        .food {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="300"></canvas>
+    
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        let score = 0;
+        let speed = 10;
+        let direction = "right";
+        let foodX = Math.floor(Math.random() * (canvas.width - 20)) + 10;
+        let foodY = Math.floor(Math.random() * (canvas.height - 20)) + 10;
+        
+        function drawGame() {
+            // Draw the snake
+            for (let i = 0; i < score; i++) {
+                ctx.fillStyle = "#000";
+                ctx.beginPath();
+                ctx.arc((i * 10) + 5, 5, 5, 0, 2 * Math.PI);
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+            // Draw the food
+            ctx.fillStyle = "#ff0000";
+            ctx.beginPath();
+            ctx.arc(foodX, foodY, 10, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fill();
+        }
+        
+        function updateScore() {
+            if (score === 0) {
+                return;
+            }
+            
+            // Check if the snake has eaten any food
+            if ((direction === "left" && foodX <= 10) ||
+                    (direction === "up" && foodY >= canvas.height - 10) ||
+                    (direction === "down" && foodY <= 10) ||
+                    (direction === "right" && foodX >= canvas.width - 10)) {
+                score++;
+                foodX = Math.floor(Math.random() * (canvas.width - 20)) + 10;
+                foodY = Math.floor(Math.random() * (canvas.height - 20)) + 10;
+            } else {
+                // Move the snake one step closer to the food
+                switch (direction) {
+                    case "left":
+                        foodX -= 10;
+                        break;
+                    case "up":
+                        foodY += 10;
+                        break;
+                    case "down":
+                        foodY -= 10;
+                        break;
+                    default:
+                        foodX += 10;
+                        break;
+                }
+            }
+        }
+        
+        function moveSnake() {
+            // Update the snake's position based on its current direction
+            switch (direction) {
+                case "left":
+                    x--;
+                    break;
+                case "up":
+                    y++;
+                    break;
+                case "down":
+                    y--;
+                    break;
+                default:
+                    x++;
+                    break;
+            }
+            
+            // Check if the snake has hit a wall or itself
+            if (x < 0 || x > canvas.width - 10 || y < 0 || y > canvas.height - 10) {
+                alert("You lost!");
+                location.reload();
+            }
+            
+            // Check if the snake has eaten any food
+            if (x === foodX && y === foodY) {
+                score++;
+                foodX = Math.floor(Math.random() * (canvas.width - 20)) + 10;
+                foodY = Math.floor(Math.random() * (canvas.height - 20)) + 10;
+            }
+        }
+        
+        setInterval(() => {
+            updateScore();
+            moveSnake();
+            drawGame();
+        }, 1000 / speed);
+    </script>
+</body>
+</html>
